@@ -2,6 +2,7 @@ package com.social.blog.user.model;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,9 +15,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -51,10 +54,15 @@ public class User implements Serializable {
 	private Date updated_at;
 
 	@OneToOne(cascade = CascadeType.ALL)
+	//@JoinColumn(name = "prof_id", unique = true)
 	private UserProfile userProfile;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	//@JoinColumn(name = "user_add_id", unique = true)
+	private UserAddress userAddress;
+
 	public User(Long id, @NotBlank String username, @NotBlank String password, @NotBlank String email, Date created_at,
-			Date updated_at, UserProfile userProfile) {
+			Date updated_at, UserProfile userProfile, UserAddress userAddress) {
 
 		this.id = id;
 		this.username = username;
@@ -63,6 +71,7 @@ public class User implements Serializable {
 		this.created_at = created_at;
 		this.updated_at = updated_at;
 		this.userProfile = userProfile;
+		this.userAddress = userAddress;
 	}
 
 	public User() {
@@ -123,6 +132,14 @@ public class User implements Serializable {
 
 	public void setUserProfile(UserProfile userProfile) {
 		this.userProfile = userProfile;
+	}
+
+	public UserAddress getUserAddress() {
+		return userAddress;
+	}
+
+	public void setUserAddress(UserAddress userAddress) {
+		this.userAddress = userAddress;
 	}
 
 }

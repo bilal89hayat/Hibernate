@@ -1,5 +1,6 @@
 package com.social.blog.user.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,13 +10,12 @@ import javax.validation.constraints.Size;
 
 
 
-
-
 @Entity
 @Table(name = "user_profiles")
 public class UserProfile {
 
 	@Id
+	@Column(name="user_prof_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
@@ -28,17 +28,17 @@ public class UserProfile {
 	@Size(max = 15)
 	private String phoneNumber;
 
+	
 	public UserProfile() {
 	}
 
 	public UserProfile(Long id, @Size(max = 15) String firstName, @Size(max = 15) String lastName,
 			@Size(max = 15) String phoneNumber) {
-
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
-
+		
 	}
 
 	public Long getId() {
@@ -73,4 +73,5 @@ public class UserProfile {
 		this.phoneNumber = phoneNumber;
 	}
 
+	
 }

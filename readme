@@ -1,0 +1,6 @@
+In this User class has been made as parent as it contains reference to userprofile.
+Foreign key will be created in User as it contains userprofile.
+
+This is onetoone unidirectional mapping with foreign key association.
+
+User can reference UserProfile but not viceversa.
